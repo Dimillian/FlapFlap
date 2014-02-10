@@ -80,6 +80,7 @@ static const CGFloat randomFloat(CGFloat Min, CGFloat Max){
         _scoreLabel = [[SKLabelNode alloc] initWithFontNamed:@"Helvetica"];
         [_scoreLabel setPosition:CGPointMake(self.size.width/2, self.size.height-50)];
         [_scoreLabel setText:[NSString stringWithFormat:@"%@", [NSNumber numberWithInteger:_score]]];
+        [_scoreLabel setZPosition:100];
         [self addChild:_scoreLabel];
         
         [self setupPlayer];
@@ -103,6 +104,7 @@ static const CGFloat randomFloat(CGFloat Min, CGFloat Max){
     _player.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_player.size];
     [_player.physicsBody setDensity:kDensity];
     [_player.physicsBody setAllowsRotation:NO];
+    [_player.physicsBody setUsesPreciseCollisionDetection:YES];
     
     [_player.physicsBody setCategoryBitMask:kPlayerCategory];
     [_player.physicsBody setContactTestBitMask:kGroundCategory];
@@ -121,6 +123,7 @@ static const CGFloat randomFloat(CGFloat Min, CGFloat Max){
     [pipeTop setYScale:pipeTopHeight/kPipeWidth];
     [pipeTop setPosition:CGPointMake(self.size.width+(pipeTop.size.width/2), self.size.height-(pipeTop.size.height/2))];
     [pipeTop setName:kTopPipeName];
+    [pipeTop setZPosition:0];
     [self addChild:pipeTop];
     
     // Bottom Pipe
@@ -129,6 +132,7 @@ static const CGFloat randomFloat(CGFloat Min, CGFloat Max){
     [pipeBottom setYScale:(pipeBottomHeight-kGroundHeight)/kPipeWidth];
     [pipeBottom setPosition:CGPointMake(self.size.width+(pipeBottom.size.width/2), (pipeBottom.size.height/2)+(kGroundHeight-2))];
     [pipeBottom setName:kBottomPipeName];
+    [pipeBottom setZPosition:0];
     [self addChild:pipeBottom];
     
     // Move top pipe
